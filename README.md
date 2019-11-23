@@ -5,3 +5,9 @@ For replacing the background the script will read the pixel color of the first c
 ```
 python transpagif.py ~/path
 ```
+
+dependencies
+*PILLOW* Pithon Image library : 
+```
+python3 -m pip install Pillow
+```
