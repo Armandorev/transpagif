@@ -11,3 +11,8 @@ dependencies
 ```
 python3 -m pip install Pillow
 ```
+*Numpy*
+```
+python3 -m pip install numpy
+```
+
