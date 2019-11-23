@@ -10,6 +10,6 @@ folders = [f for f in glob.glob(path + '/**/*.gif',  recursive=True)]
 
 for f in folders:
     im = Image.open(f)
-    rgb_image = im.convert('RGB')
-    r, g, b = rgb_image.getpixel((1, 1))
-    print(r, g, b)
+    rgb_image = im.convert('RGBA')
+    r, g, b, a = rgb_image.getpixel((1, 1))
+    print(r, g, b, a)
