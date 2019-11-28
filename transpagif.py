@@ -17,19 +17,18 @@ for f in folders:
     data = np.array(rgb_image)
 
     red, green, blue, alpha = data[:,:,0], data[:,:,1], data[:,:,2], data[:,:,3]
-    mask = (red == r_pixelMask) & (green == g_pixelMask) & (blue == b_pixelMask)
+    mask_background = (red == r_pixelMask) & (green == g_pixelMask) & (blue == b_pixelMask)
 
-    data[:,:,:4][mask] = [r_transparent, g_transparent, b_transparent, a_transparent]
+    data[:,:,:4][mask_background] = [r_transparent, g_transparent, b_transparent, a_transparent]
 
-    image_transparent = Image.fromarray(data)
+    mask_background_invert = (alpha > 0)
 
-    # mask = data[:,:,:,0] = 0
-    coords = np.argwhere(mask)
+    coords = np.argwhere(mask_background_invert)
     x0, y0 = coords.min(axis=0)
     x1, y1 = coords.max(axis=0) + 1
     cropped = data[x0:x1, y0:y1]
 
-    image_transparent_cropped = Image.fromarray(data)
+    image_transparent_cropped = Image.fromarray(cropped)
 
     print("Creating new transparent image: %s " % f.replace('.gif','.png') )
     image_transparent_cropped.save(f.replace('.gif','.png'), "PNG")
